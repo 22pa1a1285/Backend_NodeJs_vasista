@@ -9,7 +9,7 @@ const path = require('path');
 
 const app = express()
  
-const PORT=process.env || 4000;
+const PORT=process.env.PORT || 4000;
 
 dotEnv.config();
 
@@ -30,4 +30,4 @@ app.listen(PORT,()=>{
 app.use('/',(req, res)=>{
     res.send("<h1>welcome to vasista");
 
-})
+});
