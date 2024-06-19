@@ -5,10 +5,11 @@ const vendorRoutes = require('./routes/vendorRoutes');
 const bodyParser = require('body-parser');
 const firmRoutes = require('./routes/firmRoutes');
 const productRoutes = require('./routes/productRoutes');
+const path = require('path');
 
 const app = express()
  
-const PORT=4000;
+const PORT=process.env || 4000;
 
 dotEnv.config();
 
@@ -20,12 +21,13 @@ app.use(bodyParser.json());
 app.use('/vendor',vendorRoutes);
 app.use('/firm',firmRoutes);
 app.use('/product',productRoutes);
+app.use('/uploads',express.static('uploads'));
 
 app.listen(PORT,()=>{
     console.log(`server started and running successfully at ${PORT}`);
 });
 
-app.use('/home',(req, res)=>{
+app.use('/',(req, res)=>{
     res.send("<h1>welcome to vasista");
 
 })
